@@ -1,0 +1,17 @@
+{
+  "name": "native-desktops",
+  "version": "1.0.0",
+  "description": "A full-stack framework for building native desktop applications with html, css, javascript and nodejs (express.js).",
+  "main": "src/server/server.js",
+  "scripts": {
+    "build": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "framework",
+    "native-desktop-apps",
+    "nodejs",
+    "express"
+  ],
+  "author": "TSC <thesudoersclub@gmail.com>",
+  "license": "ISC"
+}
