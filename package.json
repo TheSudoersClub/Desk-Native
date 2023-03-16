@@ -13,5 +13,8 @@
     "express"
   ],
   "author": "TSC <thesudoersclub@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "yargs": "^17.7.1"
+  }
 }
