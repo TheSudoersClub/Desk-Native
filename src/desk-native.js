@@ -4,7 +4,7 @@ const {
 } = require('child_process');
 
 // gere the generator code
-const createDeskNativeApp = require('./file-structure/structure');
+const createDeskNativeApp = require('./lib/create-app/create-app');
 
 yargs.command('create desk-native-app <appname>', 'Create a new desk-native-app', (yargs) => {
     yargs.positional('appname', {
