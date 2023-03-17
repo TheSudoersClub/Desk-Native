@@ -63,4 +63,4 @@ const getTemplateFilesPath = (app) => {
 };
 
 // export the function
-module.exports = getTemplate / srcFilesPath;
+module.exports = getTemplateFilesPath;
