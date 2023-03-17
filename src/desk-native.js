@@ -24,7 +24,7 @@ yargs.command('create desk-native-app <appname>', 'Create a new desk-native-app'
     });
 
     // initialize git repo
-    execSync(`cd ${appname} && git init && git add . && git commit -m "Initial commit from create Desk-Native-App`, {
+    execSync(`cd ${appname} && git init && git add . && git commit -m "Initial Commit from create Desk-Native-App"`, {
         stdio: 'inherit'
     });
 
