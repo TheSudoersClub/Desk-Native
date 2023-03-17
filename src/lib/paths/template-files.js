@@ -51,7 +51,7 @@ const getTemplateFilesPath = (app) => {
         },
 
         {
-            url: 'https://raw.githubusercontent.com/TheSudoersClub/Desk-Native/main/template/src/.gitignore',
+            url: 'https://raw.githubusercontent.com/TheSudoersClub/Desk-Native/main/template/.gitignore',
             dest: app.root + '/'
         },
 
