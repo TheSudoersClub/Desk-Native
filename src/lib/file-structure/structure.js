@@ -15,6 +15,16 @@ const createFileStructure = async (appName) => {
     fs.mkdirSync(app.root, {
         recursive: true
     });
+    fs.mkdirSync(app.__pack.root, {
+        recursive: true
+    });
+    fs.mkdirSync(app.__pack.build.root, {
+        recursive: true
+    });
+    fs.mkdirSync(app.__pack.build.copydir, {
+        recursive: true
+    });
+
     fs.mkdirSync(app.src.root, {
         recursive: true
     });

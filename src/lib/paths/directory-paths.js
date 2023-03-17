@@ -8,6 +8,13 @@ const getPath = (appName) => {
 
     const app = {
         root: APP_ROOT_DIR,
+        __pack: {
+            root: path.join(APP_ROOT_DIR, '__pack'),
+            build: {
+                root: path.join(APP_ROOT_DIR, '__pack', 'build'),
+                copydir: path.join(APP_ROOT_DIR, '__pack', 'build', 'copydir'),
+            },
+        },
         src: {
             root: path.join(APP_ROOT_DIR, 'src'),
             client: {
