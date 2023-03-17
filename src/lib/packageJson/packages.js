@@ -10,7 +10,7 @@ async function generatePackageJson(appname, app) {
         description: '',
         main: 'src/server/server.js',
         scripts: {
-            start: "NODE_ENV=development node_modules/.bin/nodemon --watch src/ --exec node_modules/.bin/electron .",
+            start: "node_modules/.bin/nodemon --watch src/ --exec node_modules/.bin/electron .",
             build: "node __pack/build/build.js"
 
         },

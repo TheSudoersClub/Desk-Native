@@ -1,12 +1,26 @@
 const fs = require("fs");
 const readline = require('readline');
+const os = require('os');
+const platform = os.platform();
 const {
     exec
 } = require('child_process');
-const path = require('path');
+
+// copy front-end dir to the build 
 const copySrcDir = require("./copydir/copy");
 
+// build config file 
 const configFile = './__pack/config.json';
+
+// electron path
+let electronPath = '';
+
+// configure the path with respect to os
+if (platform === 'win32') {
+    electronPath = 'node_modules\\.bin\\electron-packager'
+}else{
+    electronPath = 'node_modules/.bin/electron-packager'
+}
 
 // Check if config.json exists
 if (fs.existsSync(configFile)) {
@@ -68,6 +82,7 @@ if (fs.existsSync(configFile)) {
                     // Write options to config.json
                     fs.writeFileSync(configFile, JSON.stringify(config));
 
+                    // start building the app 
                     buildApp(config);
                 });
             });
@@ -81,12 +96,11 @@ function buildApp(config) {
     if (!fs.existsSync('./build')) {
         fs.mkdirSync('./build');
     }
-
     // Load package.json
     const packageJson = JSON.parse(fs.readFileSync('./package.json'));
 
     // Build command with user input
-    const command = `node_modules/.bin/electron-packager . ${packageJson.name} --platform=${config.platform} --arch=${config.arch} ${config.overwrite} ${config.iconPath ? `--icon=${config.iconPath}` : ''} --out=./build/`;
+    const command = `${electronPath} . ${packageJson.name} --platform=${config.platform} --arch=${config.arch} ${config.overwrite} ${config.iconPath ? `--icon=${config.iconPath}` : ''} --out=./build/`;
 
     // Execute command
     console.log(`building app...`);
