@@ -18,8 +18,7 @@ const homepage = require("./routes/homepage");
 app.use("/", homepage);
 
 
-
 // start server listener onf prot 7777;
-app.listen(7777, () => {
+app.listen(7777, '128.0.0.1', () => {
     console.log("Server listening on port 7777");
 });
