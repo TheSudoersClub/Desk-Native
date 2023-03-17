@@ -15,10 +15,19 @@ yargs.command('create desk-native-app <appname>', 'Create a new desk-native-app'
     const {
         appname
     } = argv;
+    // generate the Desk-Native app
     await createDeskNativeApp(appname);
+
+    // run npm install
     execSync(`cd ${appname} && npm install`, {
         stdio: 'inherit'
     });
+
+    // initialize git repo
+    execSync(`cd ${appname} && git init`, {
+        stdio: 'inherit'
+    });
+
     console.log('Desk Native App created successfully.');
 });
 
