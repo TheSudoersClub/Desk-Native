@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-async function generatePackageJson(appname, rootDir) {
+async function generatePackageJson(appname, app) {
 
     // write package.json file
     const packageJson = {
@@ -21,7 +21,7 @@ async function generatePackageJson(appname, rootDir) {
 
     // write generated package.json file in the app
     fs.writeFileSync(
-        path.join(rootDir, 'package.json'),
+        path.join(app.root, 'package.json'),
         JSON.stringify(packageJson, null, 2)
     );
 

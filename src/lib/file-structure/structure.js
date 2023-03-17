@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 // get paths 
-const getPath = require("../paths/path");
+const getPath = require("../paths/directory-paths");
 
 // create the app files structure (structure the directories)
 const createFileStructure = async (appName) => {
