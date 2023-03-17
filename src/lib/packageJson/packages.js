@@ -11,11 +11,15 @@ async function generatePackageJson(appname, app) {
         main: 'src/server/server.js',
         scripts: {
             start: 'node src/server/server.js',
+            build: "node __pack/build/build.js"
+
         },
         keywords: [],
         author: '',
         dependencies: {
-            "express": "^4.18.2"
+            "express": "^4.18.2",
+            "electron": "^22.0.1",
+            "electron-packager": "^17.1.1",
         }
     };
 
