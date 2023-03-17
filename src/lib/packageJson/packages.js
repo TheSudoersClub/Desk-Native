@@ -10,7 +10,7 @@ async function generatePackageJson(appname, app) {
         description: '',
         main: 'src/server/server.js',
         scripts: {
-            start: "node_modules/.bin/nodemon src/server/server.js",
+            start: "NODE_ENV=development node_modules/.bin/nodemon --watch src/ --exec node_modules/.bin/electron .",
             build: "node __pack/build/build.js"
 
         },
@@ -18,9 +18,12 @@ async function generatePackageJson(appname, app) {
         author: '',
         dependencies: {
             "express": "^4.18.2",
-            "nodemon": "^2.0.21",
-            "electron": "^22.0.1",
-            "electron-packager": "^17.1.1"
+            "nodemon": "^2.0.21"
+        },
+        devDependencies: {
+            "electron": "^23.1.4",
+            "electron-packager": "^17.1.1",
+            "electron-reload": "^2.0.0-alpha.1"
         }
     };
 
