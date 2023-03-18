@@ -1,3 +1,6 @@
+const {
+    execSync
+} = require('child_process');
 const path = require("path");
 
 // file structure for the app
@@ -30,6 +33,18 @@ async function createDeskNativeApp(appName) {
 
     // generate the package.json file
     await generatePackageJson(appName, app);
+
+    // run npm install
+    execSync(`cd ${appName} && npm install`, {
+        stdio: 'inherit'
+    });
+
+    // initialize git repo
+    execSync(`cd ${appName} && git init && git add . && git commit -m "Initial Commit from create Desk-Native-App"`, {
+        stdio: 'inherit'
+    });
+
+    console.log(`Desk Native App '${appName}' created successfully.`);
 }
 
 // export function
