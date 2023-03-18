@@ -10,7 +10,12 @@ const {
 const copySrcDir = require("./copydir/copy");
 
 // build config file 
-const configFile = './__pack/config.json';
+const configFile = './__pack/config/build.json';
+
+// create the config dir is not exists
+if (!fs.existsSync("./__pack/config")) {
+    fs.mkdirSync("./__pack/config");
+}
 
 // electron path
 let electronPath = '';
@@ -18,7 +23,7 @@ let electronPath = '';
 // configure the path with respect to os
 if (platform === 'win32') {
     electronPath = 'node_modules\\.bin\\electron-packager'
-}else{
+} else {
     electronPath = 'node_modules/.bin/electron-packager'
 }
 
@@ -30,7 +35,7 @@ if (fs.existsSync(configFile)) {
 } else {
     // Prompt user for options and write to config.json
     const platforms = ['linux', 'win32', 'darwin'];
-    const archs = ['ia32', 'x64', 'armv7l', 'arm64'];
+    const archs = ['ia32', 'x64', 'armv7l', 'arm64', 'universal'];
 
     const rl = readline.createInterface({
         input: process.stdin,

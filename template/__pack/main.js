@@ -11,7 +11,8 @@ const main = () => {
             height: 600,
             autoHideMenuBar: true,
             webPreferences: {
-                nodeIntegration: true
+                nodeIntegration: true,
+                devTools: true, // set this field "false" is you want to disable devTools for the app.
             }
         })
 
