@@ -20,8 +20,5 @@
     "express"
   ],
   "author": "TSC <thesudoersclub@gmail.com>",
-  "license": "MIT",
-  "dependencies": {
-    "yargs": "^17.7.1"
-  }
+  "license": "MIT"
 }

@@ -1,50 +1,65 @@
 const {
     execSync
 } = require('child_process');
-const path = require("path");
 
-// file structure for the app
-const createFileStructure = require("../file-structure/structure");
-
-// download the default files from the github
-const downloadFile = require("../template/template");
+// generate the app template
+const copyDirectory = require('../template/generate-template');
 
 // package.json
 const generatePackageJson = require("../packageJson/packages");
 
-// file paths for the template files on github
-const getTemplateFilesPath = require("../paths/template-files");
-
 // path of the project dir
 const getPath = require("../paths/directory-paths");
 
-
 // create the desk-native-app (file structure)
-async function createDeskNativeApp(appName) {
+async function createDeskNativeApp(APP_NAME) {
 
     // get the project dir paths
-    const app = getPath(appName)
+    let APP = '';
+    try {
+        APP = getPath(APP_NAME)
+    } catch (error) {
+        console.log("Error: ", error);
+        return;
+    }
 
-    // create the app file structure (template)
-    await createFileStructure(appName);
-
-    //  download the desk-native template files from the github
-    await downloadFile(getTemplateFilesPath(app));
+    // generate the app template dir
+    try {
+        await copyDirectory("../Desk-Native/template", APP_NAME);
+    } catch (error) {
+        console.log("Unable to generate template: ", error);
+        return;
+    }
 
     // generate the package.json file
-    await generatePackageJson(appName, app);
+    try {
+        await generatePackageJson(APP_NAME, APP);
+    } catch (error) {
+        console.log("Unable to generate package.json: ", error);
+        return;
+    }
 
     // run npm install
-    execSync(`cd ${appName} && npm install`, {
-        stdio: 'inherit'
-    });
+    try {
+        execSync(`cd ${APP_NAME} && npm install`, {
+            stdio: 'inherit'
+        });
+    } catch (error) {
+        console.log("Packages not installed: ", error);
+        return;
+    }
 
     // initialize git repo
-    execSync(`cd ${appName} && git init && git add . && git commit -m "Initial Commit from create Desk-Native-App"`, {
-        stdio: 'inherit'
-    });
+    try {
+        execSync(`cd ${APP_NAME} && git init && git add . && git commit -m "Initial Commit from create Desk-Native-App"`, {
+            stdio: 'inherit'
+        });
+    } catch (error) {
+        console.log("Unable to initialize git: ", error);
+    }
 
-    console.log(`Desk Native App '${appName}' created successfully.`);
+    // success message
+    console.log(`Desk Native App '${APP_NAME}' created successfully.`);
 }
 
 // export function
