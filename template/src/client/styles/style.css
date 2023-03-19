@@ -1,5 +1,8 @@
 :root {
-  --text-color: rgb(27, 27, 27);
+  --background-color: rgb(27, 27, 27);
+  --title-color: rgb(255, 255, 255);
+  --text-color: rgb(128, 128, 128);
+  --glow: linear-gradient(-45deg, #bd34fe 50%, #47caff 50%);
 }
 
 *,
@@ -8,8 +11,12 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  text-align: center;
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+}
 
-  font-family: Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+a {
+  color: inherit;
 }
 
 body {
@@ -18,83 +25,66 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: whitesmoke;
+  background: var(--background-color);
 }
 
-.container {
+.logo {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  animation: float 6s ease-in-out infinite;
 }
 
-.title {
-  text-align: center;
-  margin-bottom: 5rem;
+.logo__icon__bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  width: 192px;
+  height: 192px;
+  background-image: var(--glow);
+  filter: blur(80px);
+  transform: translate(-50%, -50%);
 }
 
-.title h1 {
-  font-size: 5rem;
+.logo__icon img {
+  position: relative;
+  z-index: 1;
+}
+
+
+.info {
+  transform: translateY(-2rem);
+}
+
+.info__title {
+  position: relative;
+}
+
+.info__title h1 {
+  color: var(--title-color);
+  font-weight: 700;
+}
+
+.info__msg small {
+  display: block;
   color: var(--text-color);
-}
-
-.os-c {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5rem;
   margin-bottom: 2rem;
 }
 
-.os-c .os-i {
-  width: 10rem;
-}
-
-.abt {
-  max-width: 90vw;
-  margin-bottom: 2rem;
-}
-
-.abt > p {
-  line-height: 1.5rem;
-  margin-bottom: 1rem;
-}
-
-.edt-msg {
-  text-align: center;
-}
-
-.edt-msg > span {
+.info__msg span {
+  display: block;
   color: var(--text-color);
 }
 
-@media (max-width: 887px) {
-  .os-c .os-i {
-    width: 8rem;
+@keyframes float {
+  0% {
+    transform: translateY(0px);
   }
-}
-
-@media (max-width: 600px) {
-  .os-c .os-i {
-    width: 5rem;
+  50% {
+    transform: translateY(-5px);
   }
-
-  .container * {
-    text-align: center;
-  }
-}
-
-@media (max-width: 545px) {
-  .title h1 {
-    font-size: 3.5rem;
-  }
-  .abt {
-    max-width: 80vw;
-  }
-}
-
-@media (max-width: 470px) {
-  .os-c {
-    gap: 1rem;
+  100% {
+    transform: translateY(0px);
   }
 }
