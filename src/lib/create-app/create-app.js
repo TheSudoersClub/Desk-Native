@@ -2,6 +2,8 @@ const {
     execSync
 } = require('child_process');
 
+const path = require("path");
+
 // generate the app template
 const copyDirectory = require('../template/generate-template');
 
@@ -25,7 +27,7 @@ async function createDeskNativeApp(APP_NAME) {
 
     // generate the app template dir
     try {
-        await copyDirectory("../Desk-Native/template", APP_NAME);
+        await copyDirectory(path.join(__dirname, '../../../template'), APP_NAME);
     } catch (error) {
         console.log("Unable to generate template: ", error);
         return;
