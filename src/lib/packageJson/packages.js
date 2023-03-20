@@ -23,7 +23,9 @@ async function generatePackageJson(APP_NAME, APP) {
         devDependencies: {
             "electron": "^23.1.4",
             "electron-packager": "^17.1.1",
-            "electron-reload": "^2.0.0-alpha.1"
+            "electron-reload": "^2.0.0-alpha.1",
+            "electron-reloader": "^1.2.3"
+
         }
     };
 

@@ -3,6 +3,13 @@ const {
     BrowserWindow
 } = require('electron')
 
+// electron reloader for reloading the electron app when the user changes the files 
+try {
+    require('electron-reloader')(module)
+} catch (err) {
+    console.log("Error: ", err);
+}
+
 const main = () => {
     function createWindow() {
         // Create the browser window.
@@ -21,8 +28,6 @@ const main = () => {
     }
 
     app.on('ready', createWindow)
-
-
 }
 
 // export main function
