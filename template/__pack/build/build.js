@@ -35,7 +35,7 @@ if (fs.existsSync(configFile)) {
 } else {
     // Prompt user for options and write to config.json
     const platforms = ['linux', 'win32', 'darwin'];
-    const archs = ['ia32', 'x64', 'armv7l', 'arm64', 'universal'];
+    const archs = ['ia32', 'x64', 'armv7l', 'arm64'];
 
     const rl = readline.createInterface({
         input: process.stdin,

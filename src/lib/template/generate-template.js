@@ -4,7 +4,7 @@ const path = require('path');
 async function copyDirectory(source, destination) {
   try {
     // Check if the source directory exists
-    await fs.access(source, fs.constants.F_OK);
+    await fs.stat(source);
 
     // Create the destination directory if it doesn't exist
     await fs.mkdir(destination, {
@@ -21,7 +21,7 @@ async function copyDirectory(source, destination) {
       destinationPath = path.join(destination, file);
 
       // If the file/directory is a directory, recursively call this function
-      if ((await fs.lstat(sourcePath)).isDirectory()) {
+      if ((await fs.stat(sourcePath)).isDirectory()) {
         await copyDirectory(sourcePath, destinationPath);
       } else {
         // Check if the filename is "gitignore", and rename it to ".gitignore" in the destination path
