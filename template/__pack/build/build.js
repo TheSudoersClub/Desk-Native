@@ -125,6 +125,14 @@ function buildApp(config) {
             return
         }
 
+        // copy the data (public) dir to the build app
+        try {
+            await copySrcDir("src/public", "build");
+        } catch (error) {
+            console.log(error);
+            return
+        }
+
         // log the success message
         console.log("App successfully build");
 

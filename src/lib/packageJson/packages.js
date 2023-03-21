@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
+const platform = os.platform();
 
 async function generatePackageJson(APP_NAME, APP) {
 
@@ -10,7 +12,7 @@ async function generatePackageJson(APP_NAME, APP) {
         description: '',
         main: 'src/server/server.js',
         scripts: {
-            start: "node_modules/.bin/nodemon --watch src/server/ --exec node_modules/.bin/electron .",
+            dev: "node_modules/.bin/nodemon --watch src/server/ --exec node_modules/.bin/electron .",
             build: "node __pack/build/build.js"
 
         },
@@ -28,6 +30,13 @@ async function generatePackageJson(APP_NAME, APP) {
 
         }
     };
+
+
+    // update the node_modules path for the windows
+    if (platform === 'win32') {
+        packageJson['scripts']['start'] = "node_modules\\.bin\\nodemon --watch src\\server\\ --exec node_modules\\.bin\\electron .";
+        packageJson['scripts']['build'] = "node __pack\\build\\build.js";
+    }
 
     // write generated package.json file in the app
     fs.writeFileSync(
