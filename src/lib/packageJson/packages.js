@@ -34,7 +34,7 @@ async function generatePackageJson(APP_NAME, APP) {
 
     // update the node_modules path for the windows
     if (platform === 'win32') {
-        packageJson['scripts']['start'] = "node_modules\\.bin\\nodemon --watch src\\server\\ --exec node_modules\\.bin\\electron .";
+        packageJson['scripts']['dev'] = "node_modules\\.bin\\nodemon --watch src\\server\\ --exec node_modules\\.bin\\electron .";
         packageJson['scripts']['build'] = "node __pack\\build\\build.js";
     }
 

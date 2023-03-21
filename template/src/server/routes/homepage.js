@@ -1,20 +1,26 @@
-const express = require("express");
-const router = express.Router();
+const fs = require("fs");
+const path = require("path");
 
-// homepage lib 
-const homepage = require("../lib/homepage");
+const homepage = async () => {
+    try {
 
-// homepage route
-router.get("/", async (req, res) => {
+        // read the html file
+        let data = fs.readFileSync(path.join(__dirname, '../../client/index.html'), 'utf8');
 
-    // get the homepage data
-    let {
-        statusCode,
-        data
-    } = await homepage();
+        // return the data
+        return {
+            statusCode: 200,
+            data: data
+        };
 
-    res.status(statusCode).send(data);
-});
+    } catch (error) {
+        return {
+            statusCode: 404,
+            data: error
+        };
+    }
 
-// export the router;
-module.exports = router;
+};
+
+// export the function
+module.exports = homepage;

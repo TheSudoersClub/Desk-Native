@@ -1,6 +1,6 @@
 {
   "name": "create-desk-native-app",
-  "version": "1.0.4",
+  "version": "1.0.7",
   "description": "A full-stack framework for building native desktop applications with web technologies.",
   "main": "src/desk-native.js",
   "bin": {

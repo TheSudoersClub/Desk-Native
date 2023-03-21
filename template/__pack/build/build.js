@@ -6,9 +6,6 @@ const {
     exec
 } = require('child_process');
 
-// copy front-end dir to the build 
-const copySrcDir = require("./copydir/copy");
-
 // build config file 
 const configFile = './__pack/config/build.json';
 
@@ -116,22 +113,6 @@ function buildApp(config) {
         }
         // log the error if any
         console.error(stderr);
-
-        // copy the front-end (client) code to the build app
-        try {
-            await copySrcDir("src/client", "build");
-        } catch (error) {
-            console.log(error);
-            return
-        }
-
-        // copy the data (public) dir to the build app
-        try {
-            await copySrcDir("src/public", "build");
-        } catch (error) {
-            console.log(error);
-            return
-        }
 
         // log the success message
         console.log("App successfully build");

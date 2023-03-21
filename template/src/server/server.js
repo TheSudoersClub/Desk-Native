@@ -1,21 +1,22 @@
 // express for server
 const express = require("express");
 const app = express();
+const path = require("path");
+
+// electron window config
+const main = require(path.join(__dirname, "../../__pack/main"));
 
 app.use((req, res, next) => {
     next();
 });
 
 // Serve static files
-app.use(express.static('src/client'));
-
+app.use(express.static(path.join(__dirname, '../client')));
 
 // get the homepage route
-const homepage = require("./routes/homepage");
+const homepage = require(path.join(__dirname, "routes/homepage"));
 
-const main = require("../../__pack/main");
-
-// server homepage on '/' endpoint
+// serve homepage on '/' endpoint
 app.use("/", homepage);
 
 

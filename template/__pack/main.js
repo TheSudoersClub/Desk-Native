@@ -6,9 +6,7 @@ const {
 // electron reloader for reloading the electron app when the user changes the files 
 try {
     require('electron-reloader')(module)
-} catch (err) {
-    console.log("Error: ", err);
-}
+} catch (err) {}
 
 const main = () => {
     function createWindow() {

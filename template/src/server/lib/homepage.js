@@ -1,12 +1,12 @@
-// fs module for reading the file
 const fs = require("fs");
+const path = require("path");
 
-
+// read the homepage file
 const homepage = async () => {
     try {
 
         // read the html file
-        let data = fs.readFileSync('src/client/index.html', 'utf8');
+        let data = fs.readFileSync(path.join(__dirname,'../../client/index.html'), 'utf8');
 
         // return the data
         return {
