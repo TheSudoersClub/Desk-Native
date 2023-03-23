@@ -4,7 +4,7 @@
   <img src="template/src/client/assets/logo2.svg" alt="Desk-Native logo" width="120px" height="120px"/>
   <br>
   <i>
-    A Framework for Creating Full-Stack Native Desktop Applications for Linux, Mac and Windows with Web Technologies.
+    A Framework for Creating Full-Stack Native Desktop Applications for Linux, Mac and Windows <br> with Web Technologies.
   </i>
   <br>
 </p>
@@ -26,15 +26,12 @@
 
 
 <hr>
-<br>
 
 ## Development Setup
 
 ### Prerequisites
 
 - Install [Node.js] which includes [Node Package Manager][npm]
-
-<br>
 
 ### Setting Up a Project
 
@@ -62,8 +59,9 @@ Compile application for native platforms:
 ```
 npm run build
 ```
+<br>
 
-**Like Desk-Native? Give our repo a star :star: :arrow_up:**
+**Like Desk-Native? Give our repo a star**
 
 <!-- var  -->
 [node.js]: https://nodejs.org/
