@@ -4,7 +4,7 @@
   <img src="template/src/client/assets/logo2.svg" alt="Desk-Native logo" width="120px" height="120px"/>
   <br>
   <i>
-    A Framework for Creating Full-Stack Native Desktop Applications for Linux, Mac and Windows <br> with Web Technologies.
+    A Toolkit for Creating Full-Stack Native Desktop Applications for Linux, Mac and Windows <br> with Web Technologies.
   </i>
   <br>
 </p>
