@@ -46,6 +46,10 @@ Create workspace:
 ```
 npm create desk-native-app <app_name>
 ```
+or
+```
+npx create-desk-native-app <app_name>
+```
 
 Run the application:
 
