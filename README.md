@@ -40,11 +40,11 @@
 Create workspace:
 
 ```
-npm create desk-native-app <app_name>
+npm create desk-native-app@latest <app_name>
 ```
 or
 ```
-npx create-desk-native-app <app_name>
+npx create-desk-native-app@latest <app_name>
 ```
 
 Run the application:
