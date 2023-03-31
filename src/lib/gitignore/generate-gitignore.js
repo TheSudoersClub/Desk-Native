@@ -6,7 +6,7 @@ const platform = os.platform();
 async function generateGitignore(APP) {
 
     // .gitignore file 
-    const gitignore = `build/\nnode_modules/`
+    const gitignore = `node_modules/`
 
     // write generated package.json file in the app
     fs.writeFileSync(path.join(APP, '.gitignore'), gitignore);

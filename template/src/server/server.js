@@ -4,7 +4,7 @@ const app = express();
 const path = require("path");
 
 // electron window config
-const main = require(path.join(__dirname, "../../__pack/main"));
+const main = require(path.join(__dirname, "../../meta/main"));
 
 app.use((req, res, next) => {
     next();

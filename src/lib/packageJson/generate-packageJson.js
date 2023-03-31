@@ -12,9 +12,8 @@ async function generatePackageJson(APP_NAME, APP) {
         description: '',
         main: 'src/server/server.js',
         scripts: {
-            start: "node_modules/.bin/electron .",
-            dev: "node_modules/.bin/nodemon --watch src/server/ --exec node_modules/.bin/electron .",
-            build: "node __pack/build/build.js"
+            dev: "node meta/bin/dev/dev.js",
+            build: "node meta/bin/build/build.js"
         },
         keywords: [],
         author: '',
@@ -34,7 +33,7 @@ async function generatePackageJson(APP_NAME, APP) {
     // update the node_modules path for the windows
     if (platform === 'win32') {
         packageJson['scripts']['dev'] = "node_modules\\.bin\\nodemon --watch src\\server\\ --exec node_modules\\.bin\\electron .";
-        packageJson['scripts']['build'] = "node __pack\\build\\build.js";
+        packageJson['scripts']['build'] = "node meta\\build\\build.js";
     }
 
     // write generated package.json file in the app

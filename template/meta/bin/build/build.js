@@ -2,17 +2,14 @@ const fs = require("fs");
 const readline = require('readline');
 const os = require('os');
 const platform = os.platform();
+const path = require("path");
+
 const {
     exec
 } = require('child_process');
 
 // build config file 
-const configFile = './__pack/config/build.json';
-
-// create the config dir is not exists
-if (!fs.existsSync("./__pack/config")) {
-    fs.mkdirSync("./__pack/config");
-}
+const configFile = path.join(__dirname, '../../config/build/config.json');
 
 // electron path
 let electronPath = '';
@@ -81,6 +78,11 @@ if (fs.existsSync(configFile)) {
                         iconPath,
                         overwrite
                     };
+
+                    // create the config/build dir is not exists
+                    if (!fs.existsSync(path.join(__dirname, "../../config/build"))) {
+                        fs.mkdirSync(path.join(__dirname, "../../config/build"));
+                    }
                     // Write options to config.json
                     fs.writeFileSync(configFile, JSON.stringify(config));
 
@@ -99,7 +101,7 @@ function buildApp(config) {
         fs.mkdirSync('./build');
     }
     // Load package.json
-    const packageJson = JSON.parse(fs.readFileSync('./package.json'));
+    const packageJson = JSON.parse(fs.readFileSync(path.join(__dirname, '../../../package.json')));
 
     // Build command with user input
     const command = `${electronPath} . ${packageJson.name} --platform=${config.platform} --arch=${config.arch} ${config.overwrite} ${config.iconPath ? `--icon=${config.iconPath}` : ''} --out=./build/`;

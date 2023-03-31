@@ -24,7 +24,7 @@
   <br>
 </p>
 
-> tbh it just scaffolds an express electron app but is way simple and minimal, We don't know if it would be useful or not but we find ourselves repeating so here we go. <br>
+>It just scaffolds an express electron app but is way simple and minimal, We don't know if it would be useful or not but we find ourselves repeating so here we go. <br>
 > And one thing to mention, it compiles in a build so no need for node on the user side.
 
 <hr>
