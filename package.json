@@ -1,13 +1,13 @@
 {
   "name": "create-desk-native-app",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A full-stack framework for building native desktop applications with web technologies.",
   "main": "src/desk-native.js",
   "bin": {
     "create-desk-native-app": "src/desk-native.js"
   },
   "scripts": {
-    "build": "echo \"Error: no test specified\" && exit 1"
+    "build": "node src/desk-native.js test_project "
   },
   "repository": {
     "type": "git",

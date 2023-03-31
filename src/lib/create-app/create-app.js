@@ -8,7 +8,11 @@ const path = require("path");
 const copyDirectory = require('../template/generate-template');
 
 // package.json
-const generatePackageJson = require("../packageJson/packages");
+const generatePackageJson = require("../packageJson/generate-packageJson");
+
+// .gitignore
+const generateGitignore = require('../gitignore/generate-gitignore');
+
 
 // path of the project dir
 const getPath = require("../paths/directory-paths");
@@ -39,6 +43,13 @@ async function createDeskNativeApp(APP_NAME) {
     } catch (error) {
         console.log("Unable to generate package.json: ", error);
         return;
+    }
+
+    // generate the .gitignore file
+    try {
+        await generateGitignore(APP);
+    } catch (error) {
+        console.log("Unable to generate .gitignore: ", error);
     }
 
     // run npm install

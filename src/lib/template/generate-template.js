@@ -24,15 +24,12 @@ async function copyDirectory(source, destination) {
       if ((await fs.stat(sourcePath)).isDirectory()) {
         await copyDirectory(sourcePath, destinationPath);
       } else {
-        // Check if the filename is "gitignore", and rename it to ".gitignore" in the destination path
-        if (file === "gitignore") {
-          destinationPath = path.join(destination, ".gitignore");
-        }
         await fs.copyFile(sourcePath, destinationPath);
       }
     }
     // log the destination file that are copies
     console.log(destinationPath);
+
   } catch (error) {
     console.error(error);
   }

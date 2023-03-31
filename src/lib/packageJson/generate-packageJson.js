@@ -12,9 +12,9 @@ async function generatePackageJson(APP_NAME, APP) {
         description: '',
         main: 'src/server/server.js',
         scripts: {
+            start: "node_modules/.bin/electron .",
             dev: "node_modules/.bin/nodemon --watch src/server/ --exec node_modules/.bin/electron .",
             build: "node __pack/build/build.js"
-
         },
         keywords: [],
         author: '',
@@ -27,7 +27,6 @@ async function generatePackageJson(APP_NAME, APP) {
             "electron-packager": "^17.1.1",
             "electron-reload": "^2.0.0-alpha.1",
             "electron-reloader": "^1.2.3"
-
         }
     };
 
