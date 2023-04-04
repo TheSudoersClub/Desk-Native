@@ -1,16 +1,30 @@
-const { spawn } = require('child_process');
+const {
+  spawn
+} = require('child_process');
 
 const fs = require("fs");
 const path = require("path");
+
+const os = require('os');
+const platform = os.platform();
 
 // get the configurations for development
 const devConfig = JSON.parse(fs.readFileSync(path.join(__dirname, "../../config/window/dev.json")));
 
 // command 
-const command = devConfig.reload ? "node_modules/.bin/nodemon --watch src/server/ --exec node_modules/.bin/electron . --dev" : "node_modules/.bin/electron . --dev"
+let command;
+
+// set the command path based on os
+if (platform === 'win32') {
+  command = devConfig.reload ? "node_modules\\.bin\\nodemon --watch src\\server\\ --exec node_modules\\.bin\\electron . --dev" : "node_modules\\.bin\\electron . --dev"
+} else {
+  command = devConfig.reload ? "node_modules/.bin/nodemon --watch src/server/ --exec node_modules/.bin/electron . --dev" : "node_modules/.bin/electron . --dev"
+}
 
 // execute the resultant command
-const child = spawn(command, { shell: true });
+const child = spawn(command, {
+  shell: true
+});
 
 // stream output from child process to console
 child.stdout.on('data', (data) => {
