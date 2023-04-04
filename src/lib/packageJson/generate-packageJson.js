@@ -12,8 +12,8 @@ async function generatePackageJson(APP_NAME, APP) {
         description: '',
         main: 'src/server/server.js',
         scripts: {
-            dev: "node __pack/bin/dev/dev.js",
-            build: "node __pack/bin/build/build.js"
+            dev: "node node_modules/create-desk-native-app/bin/dev/dev.js",
+            build: "node node_modules/create-desk-native-app/bin/build/build.js"
         },
         keywords: [],
         author: '',
@@ -22,18 +22,20 @@ async function generatePackageJson(APP_NAME, APP) {
             "nodemon": "^2.0.21"
         },
         devDependencies: {
+            "create-desk-native-app": "^1.1.3",
             "electron": "^23.1.4",
             "electron-packager": "^17.1.1",
             "electron-reload": "^2.0.0-alpha.1",
             "electron-reloader": "^1.2.3"
+
         }
     };
 
 
     // update the node_modules path for the windows
     if (platform === 'win32') {
-        packageJson['scripts']['dev'] = "node __pack\\bin\\dev\\dev.js";
-        packageJson['scripts']['build'] = "node __pack\\bin\\build\\build.js";
+        packageJson['scripts']['dev'] = "node node_modules\\create-desk-native-app\\bin\\dev\\dev.js";
+        packageJson['scripts']['build'] = "node node_modules\\create-desk-native-app\\bin\\build\\build.js";
     }
 
     // write generated package.json file in the app

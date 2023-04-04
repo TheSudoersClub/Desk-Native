@@ -3,13 +3,12 @@ const {
 } = require('child_process');
 
 const fs = require("fs");
-const path = require("path");
 
 const os = require('os');
 const platform = os.platform();
 
 // get the configurations for development
-const devConfig = JSON.parse(fs.readFileSync(path.join(__dirname, "../../config/window/dev.json")));
+const devConfig = JSON.parse(fs.readFileSync("config/electron/window/config/dev.json"));
 
 // command 
 let command;

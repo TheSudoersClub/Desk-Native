@@ -2,14 +2,13 @@ const fs = require("fs");
 const readline = require('readline');
 const os = require('os');
 const platform = os.platform();
-const path = require("path");
 
 const {
     exec
 } = require('child_process');
 
 // build config file 
-const configFile = path.join(__dirname, '../../config/build/config.json');
+const configFile ='config/electron/build/config.json';
 
 // electron path
 let electronPath = '';
@@ -80,8 +79,8 @@ if (fs.existsSync(configFile)) {
                     };
 
                     // create the config/build dir is not exists
-                    if (!fs.existsSync(path.join(__dirname, "../../config/build"))) {
-                        fs.mkdirSync(path.join(__dirname, "../../config/build"));
+                    if (!fs.existsSync("config/electron/build")) {
+                        fs.mkdirSync("config/electron/build");
                     }
                     // Write options to config.json
                     fs.writeFileSync(configFile, JSON.stringify(config));
@@ -101,7 +100,7 @@ function buildApp(config) {
         fs.mkdirSync('./build');
     }
     // Load package.json
-    const packageJson = JSON.parse(fs.readFileSync(path.join(__dirname, '../../../package.json')));
+    const packageJson = JSON.parse(fs.readFileSync('package.json'));
 
     // Build command with user input
     const command = `${electronPath} . ${packageJson.name} --platform=${config.platform} --arch=${config.arch} ${config.overwrite} ${config.iconPath ? `--icon=${config.iconPath}` : ''} --out=./build/`;

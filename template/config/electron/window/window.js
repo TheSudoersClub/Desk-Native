@@ -11,13 +11,13 @@ try {
     require('electron-reloader')(module)
 } catch (err) {}
 
-const main = () => {
+const window = () => {
 
     // window config for development
     async function createDevWindow() {
 
         // window config json file for the development
-        const devConfig = JSON.parse(fs.readFileSync(path.join(__dirname, "config/window/dev.json")));
+        const devConfig = JSON.parse(fs.readFileSync(path.join(__dirname, "config/dev.json")));
 
         // Create the browser window.
         let win = new BrowserWindow(devConfig);
@@ -30,7 +30,7 @@ const main = () => {
     async function createBuildWindow() {
 
         // Window config json file for the production
-        const buildConfig = JSON.parse(fs.readFileSync(path.join(__dirname, "config/window/build.json")));
+        const buildConfig = JSON.parse(fs.readFileSync(path.join(__dirname, "config/build.json")));
 
         // Create the browser window.
         let win = new BrowserWindow(buildConfig);
@@ -58,5 +58,5 @@ const main = () => {
 
 }
 
-// export main function
-module.exports = main
+// export window function
+module.exports = window

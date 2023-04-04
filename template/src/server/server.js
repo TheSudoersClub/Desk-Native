@@ -4,7 +4,7 @@ const app = express();
 const path = require("path");
 
 // electron window config
-const main = require(path.join(__dirname, "../../__pack/main"));
+const window = require(path.join(__dirname, "../../config/electron/window/window"));
 
 app.use((req, res, next) => {
     next();
@@ -26,7 +26,7 @@ app.listen(7777, '127.0.0.1', () => {
 
     try {
         // display the electron app window once the app is ready
-        main();
+        window();
     } catch (error) {
         console.log("Can't open app window without build.");
     }
