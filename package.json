@@ -1,6 +1,6 @@
 {
   "name": "create-desk-native-app",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "A full-stack framework for building native desktop applications with web technologies.",
   "main": "src/desk-native.js",
   "bin": {
@@ -20,5 +20,8 @@
     "express"
   ],
   "author": "TSC <thesudoersclub@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "prompts": "^2.4.2"
+  }
 }

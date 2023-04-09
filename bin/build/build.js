@@ -1,14 +1,14 @@
-const fs = require("fs");
-const readline = require('readline');
+// Import necessary modules
+const fs = require('fs');
+const prompts = require('prompts');
 const os = require('os');
 const platform = os.platform();
-
 const {
     exec
 } = require('child_process');
 
 // build config file 
-const configFile ='config/electron/build/config.json';
+const configFile = 'config/electron/build/config.json';
 
 // electron path
 let electronPath = '';
@@ -26,71 +26,97 @@ if (fs.existsSync(configFile)) {
     const config = JSON.parse(fs.readFileSync(configFile));
     buildApp(config);
 } else {
-    // Prompt user for options and write to config.json
-    const platforms = ['linux', 'win32', 'darwin'];
-    const archs = ['ia32', 'x64', 'armv7l', 'arm64'];
 
-    const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout
-    });
 
-    let platform = '';
-    let arch = '';
-    let iconPath = '';
-    let overwrite = '';
-
-    // Prompt user for platform
-    rl.question(`Select platform(s) (comma separated): ${platforms.join(', ')}\n`, (input) => {
-        const selectedPlatforms = input.split(',').map(p => p.trim()).filter(p => platforms.includes(p));
-        if (selectedPlatforms.length === 0) {
-            console.error('Invalid platform selection');
-            process.exit(1);
+    // Define the available options
+    const platforms = [{
+            title: 'Linux',
+            value: 'linux'
+        },
+        {
+            title: 'Windows',
+            value: 'win32'
+        },
+        {
+            title: 'macOS',
+            value: 'darwin'
         }
-        platform = selectedPlatforms.join(',');
+    ];
+
+    const archs = [{
+            title: 'ia32',
+            value: 'ia32'
+        },
+        {
+            title: 'x64',
+            value: 'x64'
+        },
+        {
+            title: 'ARMv7',
+            value: 'armv7l'
+        },
+        {
+            title: 'ARM64',
+            value: 'arm64'
+        }
+    ];
+
+    async function promptUserForOptions() {
+        // Prompt user for platform
+        const platformResponse = await prompts({
+            type: 'multiselect',
+            name: 'platform',
+            message: 'Select platform(s)',
+            choices: platforms
+        });
 
         // Prompt user for architecture
-        rl.question(`Select architecture (comma separated): ${archs.join(', ')}\n`, (input) => {
-            const selectedArchs = input.split(',').map(a => a.trim()).filter(a => archs.includes(a));
-            if (selectedArchs.length === 0) {
-                console.error('Invalid architecture selection');
-                process.exit(1);
-            }
-            arch = selectedArchs.join(',');
-
-            // Prompt user for icon path
-            rl.question('Enter path to icon (leave empty to skip): ', (input) => {
-                iconPath = input.trim();
-
-                // Prompt user for overwrite option
-                rl.question('Overwrite existing files? (yes or no): ', (input) => {
-                    const inputLower = input.toLowerCase();
-                    if (inputLower !== 'yes' && inputLower !== 'no') {
-                        console.error('Invalid overwrite option');
-                        process.exit(1);
-                    }
-                    overwrite = inputLower === 'yes' ? '--overwrite' : '';
-
-                    const config = {
-                        platform,
-                        arch,
-                        iconPath,
-                        overwrite
-                    };
-
-                    // create the config/build dir is not exists
-                    if (!fs.existsSync("config/electron/build")) {
-                        fs.mkdirSync("config/electron/build");
-                    }
-                    // Write options to config.json
-                    fs.writeFileSync(configFile, JSON.stringify(config));
-
-                    // start building the app 
-                    buildApp(config);
-                });
-            });
+        const archResponse = await prompts({
+            type: 'multiselect',
+            name: 'arch',
+            message: 'Select architecture(s)',
+            choices: archs
         });
-    });
+
+        // Prompt user for icon path
+        const iconPathResponse = await prompts({
+            type: 'text',
+            name: 'iconPath',
+            message: 'Enter path to icon (leave empty to skip)'
+        });
+
+        // Prompt user for overwrite option
+        const overwriteResponse = await prompts({
+            type: 'toggle',
+            name: 'overwrite',
+            message: 'Overwrite existing files?',
+            initial: true,
+            active: 'yes',
+            inactive: 'no'
+        });
+
+        // Combine the responses into a config object
+        const config = {
+            platform: platformResponse.platform.join(','),
+            arch: archResponse.arch.join(','),
+            iconPath: iconPathResponse.iconPath.trim(),
+            overwrite: overwriteResponse.overwrite ? '--overwrite' : ''
+        };
+
+        // Create the config/build dir if it does not exist
+        if (!fs.existsSync('config/electron/build')) {
+            fs.mkdirSync('config/electron/build');
+        }
+
+        // Write options to config.json
+        fs.writeFileSync(configFile, JSON.stringify(config));
+
+        // Start building the app
+        buildApp(config);
+    }
+
+    // Call the prompt function
+    promptUserForOptions();
 }
 
 
