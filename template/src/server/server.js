@@ -10,14 +10,17 @@ app.use((req, res, next) => {
     next();
 });
 
-// Serve static files
-app.use(express.static(path.join(__dirname, '../client')));
+// *** Define your custom endpoints here ***
+// For example: app.get("/my-custom-endpoint", (req, res) => { ... });
 
 // get the homepage route
 const homepage = require(path.join(__dirname, "routes/homepage"));
 
 // serve homepage on '/' endpoint
 app.use("/", homepage);
+
+// Serve static files
+app.use(express.static(path.join(__dirname, '../client')));
 
 
 // start server listener onf prot 7777;

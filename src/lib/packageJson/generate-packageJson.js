@@ -18,6 +18,7 @@ async function generatePackageJson(APP_NAME, APP) {
         keywords: [],
         author: '',
         dependencies: {
+            "desk-native-database": "^1.0.1",
             "express": "^4.18.2",
             "nodemon": "^2.0.21"
         },

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 "use strict";
 
- // gere the generator code
+// the generator code
 const createDeskNativeApp = require('./lib/create-app/create-app');
 const args = process.argv.slice(2);
 const APP_NAME = args[0];
